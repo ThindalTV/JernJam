@@ -18,6 +18,8 @@ namespace JernJam
         dragObject.SetDragEnabled(true);
         dragObject.SetWallYOffset(_DragWallYLevel);
         
+        var rigidBody = go.AddComponent<Rigidbody>();
+        
       }
     }
   }
