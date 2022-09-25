@@ -12,7 +12,25 @@ namespace JernJam
     [SerializeField] private float _scrollSpeed = 200f;
     [SerializeField] private float minY = 20f;
     [SerializeField] private float maxY = 100f;
-    
+    [SerializeField] private float _rotationSpeed = 100f;
+
+    private float cameraToGroundAngleTan;
+
+    private void Start()
+    {
+      UpdateCachedCameraProps();
+    }
+
+    private void UpdateCachedCameraProps()
+    {
+      // Tan(Angle) to calculate rotation point
+      Vector3 startPoint = transform.position;
+      Vector3 fwd = transform.forward.normalized;
+      float alphaTan = fwd.magnitude / (new Vector3(0, fwd.y, 0)).magnitude;
+      double beta = Math.PI / 2 - Math.Atan((double)alphaTan);
+      cameraToGroundAngleTan = (float)Math.Tan(beta);
+    }
+
     private void LateUpdate()
     {
       // Pan and zoom
@@ -49,11 +67,29 @@ namespace JernJam
       pos.y = Mathf.Clamp(pos.y, minY, maxY);
       pos.z = Mathf.Clamp(pos.z, -_panLimit.y, _panLimit.y);
 
-      // Rotation around
-      
-      
-      
       transform.localPosition = pos;
+      
+      if (Input.GetKey("q") || Input.GetKey("e"))
+      {
+        // Rotation around
+
+        Vector3 startPoint = transform.position;
+        Vector3 fwd = transform.forward;
+        Vector3 groundForwardProjection = (new Vector3(fwd.x, 0, fwd.z)) * startPoint.y / cameraToGroundAngleTan 
+                                          + new Vector3(startPoint.x, 0, startPoint.z);
+
+        //Debug.DrawLine(groundForwardProjection, groundForwardProjection + Vector3.up * 10, Color.magenta, 5f);
+        
+        if (Input.GetKey("q"))
+        {
+          transform.RotateAround(groundForwardProjection, Vector3.up, -1 * _rotationSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey("e"))
+        {
+          transform.RotateAround(groundForwardProjection, Vector3.up, _rotationSpeed * Time.deltaTime);
+        }
+      }
+      
     }
   }
 }
