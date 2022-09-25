@@ -13,7 +13,13 @@ namespace JernJam
     private float _zCoord;
     private float _fixedInWorldYCoord;
     private bool _dragEnabled = true;
+    private Camera _mainCam;
 
+    public void Start()
+    {
+      _mainCam = Camera.main;
+    }
+    
     // Gameplay turn off / turn on if needed
     public void SetDragEnabled(bool isEnabled = true)
     {
@@ -45,8 +51,8 @@ namespace JernJam
     {
       Vector3 mousePoint = Input.mousePosition;
       mousePoint.z = _zCoord;
-
-      return Camera.main.ScreenToWorldPoint(mousePoint);
+      
+      return _mainCam.ScreenToWorldPoint(mousePoint);
     }
     
   }
