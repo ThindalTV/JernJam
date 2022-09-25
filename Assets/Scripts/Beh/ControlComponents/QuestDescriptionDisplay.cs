@@ -25,6 +25,11 @@ namespace JernJam
     {
       _textMeshProField.SetText(newQuestText);
     }
+
+    public void HideQuestText()
+    {
+      this.enabled = false;
+    }
     
   }
 }
