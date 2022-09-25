@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace JernJam
 {
@@ -7,6 +8,12 @@ namespace JernJam
    */
   public class QuestCollectableActor : MonoBehaviour
   {
+    public string itemDescription;
+    
+    private void OnMouseDown()
+    {
+      QuestDescriptionDisplay.instance.UpdateQuestText(itemDescription);
+    }
     
   }
 }

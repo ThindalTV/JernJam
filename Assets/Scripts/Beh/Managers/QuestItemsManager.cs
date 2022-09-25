@@ -17,6 +17,9 @@ namespace JernJam
         var dragObject = go.AddComponent<DragObject>();
         dragObject.SetDragEnabled(true);
         dragObject.SetWallYOffset(_DragWallYLevel);
+
+        var questItem = go.AddComponent<QuestCollectableActor>();
+        questItem.itemDescription = questAuth.itemDescription;
         
         var rigidBody = go.AddComponent<Rigidbody>();
         

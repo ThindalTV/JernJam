@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4300182227828076800}
   - component: {fileID: 1785577680952790947}
   - component: {fileID: 5714871798184606535}
+  - component: {fileID: 1183508648025747283}
+  - component: {fileID: 8780945648221984416}
   m_Layer: 0
   m_Name: Arcade
   m_TagString: Untagged
@@ -90,3 +92,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1183508648025747283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489286941791825391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d8d9e69c6e44678ddb946f0d448423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDescription: This is not arcade, this is atomic bomb control panel
+--- !u!64 &8780945648221984416
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489286941791825391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7691102657866341706, guid: 02ad78cca7f19f843b49a2e580791919, type: 3}
