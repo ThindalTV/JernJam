@@ -14,7 +14,13 @@ namespace JernJam
     private float _fixedInWorldYCoord;
     private bool _dragEnabled = true;
     private Camera _mainCam;
+    public bool _isBeingGrabbed;
 
+    public bool GetIsBeingGrabbed()
+    {
+      return _isBeingGrabbed;
+    }
+    
     public void Start()
     {
       _mainCam = Camera.main;
@@ -37,14 +43,57 @@ namespace JernJam
       if (!_dragEnabled) return;
       _zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
       _offset = gameObject.transform.position - GetMouseWorldPos();
+      _isBeingGrabbed = true;
     }
-    
+
+    private void OnMouseUp()
+    {
+      _isBeingGrabbed = false;
+    }
+
     private void OnMouseDrag()
     {
       if (!_dragEnabled) return;
       Vector3 newPosition = GetMouseWorldPos() + _offset;
       newPosition.y = _fixedInWorldYCoord;
-      transform.position = newPosition;
+
+      transform.position = this.ClampPosition(newPosition);
+    }
+
+    private Vector3 ClampPosition(Vector3 position)
+    {
+      Vector3 clampedPosition = Vector3.zero;
+      if (position.x >= QuestItemsManager.instance.itemXZBounds.x)
+      {
+        clampedPosition.x = QuestItemsManager.instance.itemXZBounds.x;
+      }
+      else if (position.x <= -QuestItemsManager.instance.itemXZBounds.x)
+      {
+        clampedPosition.x = -QuestItemsManager.instance.itemXZBounds.x;
+      }
+      else
+      {
+        clampedPosition.x = position.x;
+      }
+      
+      
+      if (position.z >= QuestItemsManager.instance.itemXZBounds.y)
+      {
+        clampedPosition.z = QuestItemsManager.instance.itemXZBounds.y;
+      }
+      else if (position.z <= -QuestItemsManager.instance.itemXZBounds.y)
+      {
+        clampedPosition.z = -QuestItemsManager.instance.itemXZBounds.y;
+      }
+      else
+      {
+        clampedPosition.z = position.z;
+      }
+
+      clampedPosition.y = position.y;
+
+      return clampedPosition;
+
     }
 
     private Vector3 GetMouseWorldPos()

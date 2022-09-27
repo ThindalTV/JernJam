@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace JernJam
 {
@@ -8,7 +9,15 @@ namespace JernJam
   public class QuestItemsManager : MonoBehaviour
   {
     [SerializeField] private float _DragWallYLevel;
+    [SerializeField] public Vector2 itemXZBounds = new Vector2(20, 20);
     
+    public static QuestItemsManager instance { get; private set;  }
+
+    private void Awake()
+    {
+      instance = this;
+    }
+
     public void OnLevelInit()
     {
       // The items
@@ -33,6 +42,8 @@ namespace JernJam
         var go = boxAuth.gameObject;
         var questBox = go.AddComponent<BoxQuestDisposer>();
         questBox.questCategory = boxAuth.questCategory;
+        questBox.spitOutDirection = boxAuth.spitOutDirection.transform.forward;
+        questBox.spitOutForce = boxAuth.spitOutForce;
       }
       
     }

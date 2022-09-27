@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 126423126866136555}
   - component: {fileID: 453628087087491586}
+  - component: {fileID: 543450653075853569}
+  - component: {fileID: 543450653075853568}
   m_Layer: 0
   m_Name: GarbageTruck
   m_TagString: Untagged
@@ -36,6 +38,7 @@ Transform:
   - {fileID: 2000579784788688126}
   - {fileID: 7361221612364645630}
   - {fileID: 502253625532432832}
+  - {fileID: 6118156192181087687}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,6 +62,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &543450653075853569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759689445639214929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0522826, y: 3.2882879, z: 4.1408525}
+  m_Center: {x: -0.001214385, y: 2.4870453, z: -0.229182}
+--- !u!114 &543450653075853568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759689445639214929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22d7e1eb68747eb97f8669210e34c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questCategory: 4
+  spitOutDirection: {fileID: 6118156192181087687}
+  spitOutForce: 15
 --- !u!1 &1106030527220711052
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +433,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6371644423705580953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6118156192181087687}
+  m_Layer: 0
+  m_Name: SpitOutDirection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6118156192181087687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371644423705580953}
+  m_LocalRotation: {x: 0.2689439, y: 0.6539642, z: -0.2689439, w: -0.6539642}
+  m_LocalPosition: {x: 0, y: 1.265, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 126423126866136555}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 44.71}
 --- !u!1 &6378212396098808190
 GameObject:
   m_ObjectHideFlags: 0
