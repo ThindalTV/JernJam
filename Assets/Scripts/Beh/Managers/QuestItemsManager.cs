@@ -11,6 +11,7 @@ namespace JernJam
     
     public void OnLevelInit()
     {
+      // The items
       foreach (var questAuth in GameObject.FindObjectsOfType<QuestItemAuthoring>())
       {
         var go = questAuth.gameObject;
@@ -20,10 +21,20 @@ namespace JernJam
 
         var questItem = go.AddComponent<QuestCollectableActor>();
         questItem.itemDescription = questAuth.itemDescription;
+        questItem.questCategory = questAuth.questCategory;
         
         var rigidBody = go.AddComponent<Rigidbody>();
         
       }
+      
+      // The boxes for items
+      foreach (var boxAuth in GameObject.FindObjectsOfType<TargetBoxAuthoring>())
+      {
+        var go = boxAuth.gameObject;
+        var questBox = go.AddComponent<BoxQuestDisposer>();
+        questBox.questCategory = boxAuth.questCategory;
+      }
+      
     }
   }
 }

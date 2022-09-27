@@ -4,7 +4,7 @@ using UnityEngine;
 namespace JernJam
 {
   /*
-   * Add / remove camera targets here. 
+   * Not in use
    */
   public class CameraTargetManager : MonoBehaviour
   {

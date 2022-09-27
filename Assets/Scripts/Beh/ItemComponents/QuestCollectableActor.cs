@@ -9,6 +9,7 @@ namespace JernJam
   public class QuestCollectableActor : MonoBehaviour
   {
     public string itemDescription;
+    public QuestCategoryEnum questCategory;
     
     private void OnMouseDown()
     {

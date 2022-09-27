@@ -10,6 +10,6 @@ namespace JernJam
   public class QuestItemAuthoring : MonoBehaviour
   {
     [SerializeField] public string itemDescription;
-
+    [SerializeField] public QuestCategoryEnum questCategory;
   }
 }

@@ -23,6 +23,10 @@ namespace JernJam
 
     public void UpdateQuestText(string newQuestText)
     {
+      if (newQuestText == "")
+      {
+        newQuestText = "Something ancient and useless";
+      }
       _textMeshProField.SetText(newQuestText);
     }
 
