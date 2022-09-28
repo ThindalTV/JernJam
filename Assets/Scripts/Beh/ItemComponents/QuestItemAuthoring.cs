@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace JernJam
 {
@@ -11,5 +12,33 @@ namespace JernJam
   {
     [SerializeField] public string itemDescription;
     [SerializeField] public QuestCategoryEnum questCategory;
+    
+    void OnDrawGizmos()
+    {
+      string txt = "No category";
+      if (questCategory == QuestCategoryEnum.Garbage)
+      {
+        txt = "Garbage";
+      }
+      else if (questCategory == QuestCategoryEnum.Furniture)
+      {
+        txt = "Furniture";
+      }
+      else if (questCategory == QuestCategoryEnum.PirateQuest)
+      {
+        txt = "Pirate";
+      }
+      else if (questCategory == QuestCategoryEnum.RacingQuest)
+      {
+        txt = "Racing";
+      }
+      else if (questCategory == QuestCategoryEnum.MrRobotQuest)
+      {
+        txt = "MrRobot";
+      }
+      
+      Handles.Label(transform.position, txt);
+    }
+    
   }
 }
