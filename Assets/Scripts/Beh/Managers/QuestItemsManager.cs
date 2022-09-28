@@ -42,8 +42,6 @@ namespace JernJam
         var go = boxAuth.gameObject;
         var questBox = go.AddComponent<BoxQuestDisposer>();
         questBox.questCategory = boxAuth.questCategory;
-        questBox.spitOutDirection = boxAuth.spitOutDirection.transform.forward;
-        questBox.spitOutForce = boxAuth.spitOutForce;
       }
       
     }

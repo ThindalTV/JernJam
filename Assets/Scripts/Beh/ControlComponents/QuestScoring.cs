@@ -10,8 +10,9 @@ namespace JernJam
     private int totalScore;
     [SerializeField] public int relevantQuestScore = 10;
     [SerializeField] public int garbageScore = 1;
-    [SerializeField] public string correctActionHint = "Fits there";
+    [SerializeField] public string correctActionHint = "Items fits in the box, packed and ready for transportation";
     [SerializeField] public string wrongActionHint = "Feels wrong";
+    [SerializeField] public string wastedWorld = "Wasted";
 
     public static QuestScoring instance { get; private set;  }
 

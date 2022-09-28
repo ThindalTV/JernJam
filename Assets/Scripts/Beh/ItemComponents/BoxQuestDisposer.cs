@@ -12,9 +12,6 @@ namespace JernJam
   public class BoxQuestDisposer : MonoBehaviour
   {
     public QuestCategoryEnum questCategory;
-    public Vector3 spitOutDirection;
-    public float spitOutForce;
-    
     private Animator _animator;
 
     private void Awake()
@@ -29,45 +26,55 @@ namespace JernJam
       if (attch == null) return;
       
       _animator.SetBool("ContainerIsActive", true);
-      
-      // var go = other.transform.gameObject;
-      // if (attch.questCategory == questCategory || questCategory == QuestCategoryEnum.Garbage)
-      // {
-      //   if (attch.questCategory != QuestCategoryEnum.Garbage && questCategory != QuestCategoryEnum.Garbage)
-      //   {
-      //     QuestScoring.instance.ScoreItem(
-      //       QuestScoring.instance.relevantQuestScore
-      //     );
-      //     QuestDescriptionDisplay.instance.UpdateQuestText(
-      //       QuestScoring.instance.correctActionHint
-      //     );
-      //   }
-      //   else
-      //   {
-      //     QuestScoring.instance.ScoreItem(
-      //       QuestScoring.instance.garbageScore
-      //     );
-      //   }
-      //   
-      //   go.SetActive(false);
-      //   
-      // }
-      // else
-      // {
-      //   SpitOut(go);
-      // }
-      
-      
     }
 
-    /* */ 
+    /* Check if object is no more grabbed. If not grabbed and wrong category - spit it out.
+     If not grabbed and correct category - take it in. */ 
     private void OnTriggerStay(Collider other)
     {
       var drg = other.transform.GetComponent<DragObject>();
       if (drg == null) return;
       if (!drg.GetIsBeingGrabbed())
       {
-        SpitOut(drg.gameObject);
+        
+        var go = other.transform.gameObject;
+        
+        var attch = other.transform.GetComponent<QuestCollectableActor>();
+        if (attch == null) return;
+        if (attch.questCategory == questCategory || questCategory == QuestCategoryEnum.Garbage)
+        {
+          if (attch.questCategory != QuestCategoryEnum.Garbage && questCategory != QuestCategoryEnum.Garbage)
+          {
+            QuestScoring.instance.ScoreItem(
+              QuestScoring.instance.relevantQuestScore
+            );
+            QuestDescriptionDisplay.instance.UpdateQuestText(
+              QuestScoring.instance.correctActionHint
+            );
+          }
+          else
+          {
+            QuestScoring.instance.ScoreItem(
+              QuestScoring.instance.garbageScore
+            );
+            if (questCategory == QuestCategoryEnum.Garbage)
+            {
+              QuestDescriptionDisplay.instance.UpdateQuestText(
+                QuestScoring.instance.wastedWorld
+              );
+            }
+          }
+          
+          go.SetActive(false);
+          _animator.SetBool("ContainerIsActive", false);
+          
+        }
+        else
+        {
+          SpitOut(go);
+          _animator.SetBool("ContainerIsActive", false);
+        }
+        
       }
     }
     
@@ -79,13 +86,10 @@ namespace JernJam
     /* If the object does not belong in a bax, throw it away somewhere */
     private void SpitOut(GameObject questGo)
     {
-      //Debug.Log("SPITTING OUT!!");
       var rb = questGo.GetComponent<Rigidbody>();
       if (rb == null) return;
       
-      rb.AddForce(Quaternion.Euler(45,0,45) * Vector3.up * 10f);
-      //rb.AddForce(spitOutDirection * spitOutForce);
-      //Debug.DrawLine(questGo.transform.position, spitOutDirection * spitOutForce, Color.magenta, 3f);
+      rb.AddForce(Quaternion.Euler(-45,45,45) * Vector3.up * 20f);
     }
     
   }
