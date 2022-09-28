@@ -12,15 +12,19 @@ namespace JernJam
     [SerializeField] public Vector2 itemXZBounds = new Vector2(20, 20);
     
     public static QuestItemsManager instance { get; private set;  }
-
+    
+    
     private void Awake()
     {
       instance = this;
+
     }
 
     public void OnLevelInit()
     {
       // The items
+      int maxScore = 0;
+      int allItems = 0;
       foreach (var questAuth in GameObject.FindObjectsOfType<QuestItemAuthoring>())
       {
         var go = questAuth.gameObject;
@@ -31,6 +35,17 @@ namespace JernJam
         var questItem = go.AddComponent<QuestCollectableActor>();
         questItem.itemDescription = questAuth.itemDescription;
         questItem.questCategory = questAuth.questCategory;
+
+        if (questItem.questCategory == QuestCategoryEnum.Garbage)
+        {
+          maxScore += QuestScoring.instance.garbageScore;
+        }
+        else
+        {
+          maxScore += QuestScoring.instance.relevantQuestScore;
+        }
+
+        allItems += 1;
         
         var rigidBody = go.AddComponent<Rigidbody>();
         
@@ -43,7 +58,11 @@ namespace JernJam
         var questBox = go.AddComponent<BoxQuestDisposer>();
         questBox.questCategory = boxAuth.questCategory;
       }
-      
+
+      QuestScoring.instance.maxScore = maxScore;
+      QuestScoring.instance.allItemsCount = allItems;
+      QuestScoring.instance.updateScoreUI();
+
     }
   }
 }
