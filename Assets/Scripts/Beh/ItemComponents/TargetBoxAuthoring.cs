@@ -7,6 +7,12 @@ namespace JernJam
   public class TargetBoxAuthoring : MonoBehaviour
   {
     [SerializeField] public QuestCategoryEnum questCategory;
-    
+    [SerializeField] public Vector3 flyForceDirection = Vector3.up;
+
+    private void OnDrawGizmos()
+    {
+      Gizmos.color = Color.magenta;
+      Gizmos.DrawLine(transform.position, transform.position+flyForceDirection);
+    }
   }
 }

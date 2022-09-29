@@ -57,6 +57,7 @@ namespace JernJam
         var go = boxAuth.gameObject;
         var questBox = go.AddComponent<BoxQuestDisposer>();
         questBox.questCategory = boxAuth.questCategory;
+        questBox.flyForceDirection = boxAuth.flyForceDirection;
       }
 
       QuestScoring.instance.maxScore = maxScore;

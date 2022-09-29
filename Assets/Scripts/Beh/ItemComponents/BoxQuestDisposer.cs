@@ -13,6 +13,7 @@ namespace JernJam
   {
     public QuestCategoryEnum questCategory;
     private Animator _animator;
+    public Vector3 flyForceDirection = Vector3.up * 20f;
 
     private void Awake()
     {
@@ -89,7 +90,8 @@ namespace JernJam
       var rb = questGo.GetComponent<Rigidbody>();
       if (rb == null) return;
       
-      rb.AddForce(Quaternion.Euler(-45,45,45) * Vector3.up * 20f);
+      //rb.AddForce(Quaternion.Euler(-45,45,45) * Vector3.up * 20f);
+      rb.AddForce(flyForceDirection);
     }
     
   }

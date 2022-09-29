@@ -57,10 +57,21 @@ namespace JernJam
       Vector3 newPosition = GetMouseWorldPos() + _offset;
       newPosition.y = _fixedInWorldYCoord;
 
-      transform.position = this.ClampPosition(newPosition);
+      transform.position = ClampPosition(newPosition);
     }
 
-    private Vector3 ClampPosition(Vector3 position)
+    // So that the item never fly away
+    // private void Update()
+    // {
+    //   if (_dragEnabled) return;  // we clamp OnMouseDrag as well
+    //   var clampedPosition = ClampPosition(transform.position);
+    //   if (clampedPosition != transform.position)
+    //   {
+    //     transform.position = clampedPosition;
+    //   }
+    // }
+
+    public static Vector3 ClampPosition(Vector3 position)
     {
       Vector3 clampedPosition = Vector3.zero;
       if (position.x >= QuestItemsManager.instance.itemXZBounds.x)
