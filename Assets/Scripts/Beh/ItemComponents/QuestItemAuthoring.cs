@@ -13,6 +13,7 @@ namespace JernJam
     [SerializeField] public string itemDescription;
     [SerializeField] public QuestCategoryEnum questCategory;
     
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
       string txt = "No category";
@@ -36,9 +37,9 @@ namespace JernJam
       {
         txt = "MrRobot";
       }
-      
       Handles.Label(transform.position, txt);
     }
-    
+#endif
+
   }
 }

@@ -9,10 +9,13 @@ namespace JernJam
     [SerializeField] public QuestCategoryEnum questCategory;
     [SerializeField] public Vector3 flyForceDirection = Vector3.up;
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
       Gizmos.color = Color.magenta;
       Gizmos.DrawLine(transform.position, transform.position+flyForceDirection);
     }
+#endif
+    
   }
 }
